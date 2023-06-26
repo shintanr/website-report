@@ -28,7 +28,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
@@ -37,7 +36,7 @@
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="home.php">Terminal Tegal</a></h1>
+      <h1 class="logo"><a href="index.html">Terminal Tegal</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -45,9 +44,6 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#services">Laporan</a></li>
-          <li><a class="nav-link scrollto" href="#caralapor">Cara lapor</a></li>
-          <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="getstarted scrollto" href="index.html">Logout</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -67,9 +63,9 @@
         <div class="carousel-item active" style="background-image: url(assets/img/slide/slide-1.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate__animated animate__fadeInDown">Selamat Datang <span>di Terminal Tegal</span></h2>
+              <h2 class="animate__animated animate__fadeInDown">Halaman Admin</h2>
               <p class="animate__animated animate__fadeInUp">Website ini merupakan website pelaporan kerusakan fasilitas di Terminal Tegal. Laporankan keluhan Anda kepada kami demi keyamanan seluruh penumpang.</p>
-              <a href="formlaporan.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Buat Laporan</a>
+              <a href="laporan-admin.php" class="btn-get-started animate__animated animate__fadeInUp scrollto">Cek Laporan</a>
             </div>
           </div>
         </div>
@@ -87,9 +83,11 @@
     </div>
   </section><!-- End Hero -->
 
+  <main id="main">
 
-       <!-- ======= Services Section ======= -->
-       <section id="services" class="services">
+
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -152,134 +150,6 @@
     </section><!-- End Services Section -->
 
 
-    <!-- ======= Cara melapor section ======= -->
-    
-    <section id="caralapor" class="team section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Lapor</h2>
-          <p>Cara Melapor</p>
-        </div>
-
-        <div class="row">
-
-        </div>
-
-      </div>
-
-      <div class="container-fluid layanan pt-5 pb-5">
-        <div class="container text-center">
-          <p>
-            <div class="row pt-4">
-              <div class="col-md-4">
-                <span class="lingkaran"><i class=""><h1>1</h1></i></span>
-                <h3 class="mt-3">Registrasi / Login</h3>
-                <p>.</p>
-              </div>
-              <div class="col-md-4">
-                <span class="lingkaran"><i class=""><h1>2</h1></i></span>
-                <h3 class="mt-3">Klik Buat Laporan</h3>
-                <p></p>
-              </div>
-              <div class="col-md-4">
-                <span class="lingkaran"><i class=""><h1>3</h1></i></span>
-                <h3 class="mt-3">Mengisi Laporan</h3>
-                <p></p>
-              </div>
-              <div class="col-md-4">
-                <span class="lingkaran"><i class=""><h1>4</h1></i></span>
-                <h3 class="mt-3">Klik tombol Lapor</h3>
-                <p></p>
-              </div>
-              <div class="col-md-4">
-                <span class="lingkaran"><i class=""><h1>5</h1></i></span>
-                <h3 class="mt-3">Laporan akan diproses</h3>
-                <p></p>
-              </div>
-            </div>
-          </p>
-        </div>
-      </div>
-
-    </section>
-    
-    
-    
-    <!-- End lapor Section -->
-
-
-
-
-    <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Kontak</h2>
-          <p>Hubungi Kami</p>
-        </div>
-
-        <div class="row">
-
-          <div class="col-lg-6">
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info-box">
-                  <i class="bx bx-map"></i>
-                  <h3>Alamat</h3>
-                  <p>Jalan Dr. Cipto Mangunkusumo Tegal, Jawa Tengah</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box mt-4">
-                  <i class="bx bx-envelope"></i>
-                  <h3>Email</h3>
-                  <p>info@contoh.com<br>contact@contoh.com</p>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="info-box mt-4">
-                  <i class="bx bx-phone-call"></i>
-                  <h3>Telepon</h3>
-                  <p>+62 xxxx xxxxx xx<br>+62 xxxx xxxxx xx</p>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Nama" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subjek" required>
-              </div>
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="message" rows="5" placeholder="Pesan" required></textarea>
-              </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
-              </div>
-              <div class="text-center"><button type="submit">Kirim pesan</button></div>
-            </form>
-          </div>
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">
@@ -315,6 +185,7 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 
 </body>
 

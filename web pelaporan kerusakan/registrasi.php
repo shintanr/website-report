@@ -3,27 +3,19 @@ session_start();
 
 require 'fungsi.php';
 
-if (isset($_POST['login'])) {
+if (isset($_POST['daftar'])) {
+    $nama = $_POST['nama'];
     $email = $_POST['email'];
     $password = md5($_POST['password']);
+    $pekerjaan = $_POST['pekerjaan'];
 
-    $result = mysqli_query($koneksi, "SELECT * FROM user WHERE email = '$email'");
-    $cek = mysqli_num_rows($result);
-
-    if ($cek > 0) {
-        $_SESSION['login'] = true;
-        
-        if ($email === 'admin@gmail.com') {
-            header('Location: laporan-admin.php');
-            exit();
-        } else {
-            header('Location: home.php');
-            exit();
-        }
-    } else {
-        $error = true;
-    }
+    $sql = "INSERT INTO `user` (nama, email, password, pekerjaan) VALUES ('$nama', '$email', '$password', '$pekerjaan')";
+    
+    $result = mysqli_query($koneksi, $sql);
+    
 }
+
+
 ?>
 
 
@@ -33,7 +25,7 @@ if (isset($_POST['login'])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+	<title>Registrasi</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -68,40 +60,51 @@ if (isset($_POST['login'])) {
 				<?php endif; ?>
 				<form class="login100-form validate-form" action="" method="POST">
 					<span class="login100-form-title p-b-43">
-						MASUK
+						DAFTAR
 					</span>
 					
 					
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+					<div class="wrap-input100" >
+						<input class="input100" type="text" name="nama">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Nama</span>
+					</div>
+					
+                    <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Email</span>
 					</div>
 					
-					
-					<div class="wrap-input100 validate-input" data-validate="Password is required">
+
+                    <div class="wrap-input100 validate-input" data-validate="Password is required">
 						<input class="input100" type="password" name="password">
 						<span class="focus-input100"></span>
 						<span class="label-input100">Password</span>
 					</div>
 
+                    <div class="wrap-input100" >
+						<input class="input100" type="text" name="pekerjaan">
+						<span class="focus-input100"></span>
+						<span class="label-input100">Pekerjaan</span>
+					</div>
+
 					<div class="flex-sb-m w-full p-t-3 p-b-32">
 						<div class="contact100-form-checkbox">
 							<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-							
 						</div>
 
 						<div>
-							<a href="registrasi.php" class="txt1">
-								Belum punya akun? Daftar
+							<a href="login.php" class="txt1">
+								Sudah punya akun? Masuk
 							</a>
 						</div>
 					</div>
 			
 
 					<div class="container-login100-form-btn">
-						<button type="submit" name="login" class="login100-form-btn">
-							masuk
+						<button type="submit" name="daftar" class="login100-form-btn">
+							Daftar
 						</button>
 					</div>
 					

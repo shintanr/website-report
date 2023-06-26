@@ -55,6 +55,12 @@ body, html {
 	font-family: Poppins-Regular, sans-serif;
 }
 
+body {
+  background-image: url('assets/img/slide-1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 /*---------------------------------------------*/
 a {
 	font-family: Poppins-Regular;

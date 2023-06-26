@@ -1,5 +1,6 @@
 <?php
 include 'fungsi.php';
+
 ?>
 
 
@@ -24,6 +25,7 @@ include 'fungsi.php';
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="assets/css/sty">
 </head>
 <body>
 
@@ -65,52 +67,87 @@ include 'fungsi.php';
     </div>
     <div class="row my-5">
         <div class="col-md">
-        <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr>
-                <th>Tanggal Lapor</th>
-                <th>Jenis</th>
-                <th>Fasilitas</th>
-                <th>Deskripsi</th>
-                <th>Masukan</th>
-                <th>Foto</th>
-                <th>Status Laporan</th>
-                <th>Aksi</th>
-            </tr>
+        <table id="example" class="table table-bordered border-dark table-hover" style="width:100%">
+        <thead class="table-dark">
+             <tr class="text-center">
+        <th class="text-center">Tanggal Lapor</th>
+        <th class="text-center">Jenis</th>
+        <th class="text-center">Fasilitas</th>
+        <th class="text-center">Deskripsi</th>
+        <th class="text-center">Masukan</th>
+        <th class="text-center">Foto</th>
+        <th class="text-center">Status Laporan</th>
+        <th class="text-center">Aksi</th>
+    </tr>
         </thead>
         <tbody>
 
-      <?php
-        $sql = "select * from `laporan`";
+        <?php
+        $sql = "SELECT * FROM `laporan`";
         $result = mysqli_query($koneksi, $sql);
-        if($result){
-          while($row=mysqli_fetch_assoc($result)){
-            $tanggal = $row['tanggal'];
-            $jenis = $row['jenis'];
-            $fasilitas = $row['fasilitas'];
-            $deskripsi = $row['deskripsi'];
-            $masukan = $row['masukan'];
-            $foto = $row['foto'];
 
-            echo '
-            <tr>
-                <td>'.$tanggal.'</td>
-                <td>'.$jenis.'</td>
-                <td>'.$fasilitas.'</td>
-                <td>'.$deskripsi.'</td>
-                <td>'.$masukan.'</td>
-                <td><img src="$foto" alt="Foto" width="50" height="50"></td>
-                <td>Terkirim</td>
-                <td>
-                <button class="btn btn-primary"><a href="" class="text-light">Pengingat</a></button>
-                <button class="btn btn-danger"><a href="" class="text-light">Urungkan</a></button>
-                </td>
-                
-            </tr>
-            ';
-          }
+        if ($result) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                $tanggal = $row['tanggal'];
+                $jenis = $row['jenis'];
+                $fasilitas = $row['fasilitas'];
+                $deskripsi = $row['deskripsi'];
+                $masukan = $row['masukan'];
+                $foto = $row['foto'];
+
+                echo '
+                <tr>
+                    <td>' . $tanggal . '</td>
+                    <td>' . $jenis . '</td>
+                    <td>' . $fasilitas . '</td>
+                    <td>' . $deskripsi . '</td>
+                    <td>' . $masukan . '</td>
+                    <td><img src="'.$foto.'" alt="" width="50" height="50"></td>
+                    <td>Terkirim</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Ingatkan
+                        </button>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-6" id="exampleModalLabel">Terima kasih telah mengingatkan. Laporan akan segera kami tindak lanjuti</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+
+                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#hapus">
+                         Urungkan
+                        </button>
+                       
+                        <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Urungkan Laporan</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Apakah Anda yakin untuk membatalkan laporan?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+                                <a href="?hapus&&id<?php echo $id ?>" class="btn btn-danger">Urungkan</a>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+                ';
+            }
         }
-      ?>
+?>
+
 
 
         </tbody>   
@@ -119,6 +156,26 @@ include 'fungsi.php';
     </div>
 </div>
     <!-- End Container -->
+
+    <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalLabel">Pengingat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Isi pesan pengingat di sini.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
     

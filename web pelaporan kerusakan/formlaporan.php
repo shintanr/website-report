@@ -1,27 +1,28 @@
 <?php
-  include 'fungsi.php';
-  if(isset($_POST['submit'])){
-    $nama = $_POST['nama'];
-    $tanggal= $_POST['tanggal'];
-    $jenis = $_POST['jenis'];
-    $fasilitas= $_POST['fasilitas'];
-    $deskripsi= $_POST['deskripsi'];
-    $masukan= $_POST['masukan'];
-    $foto= $_POST['foto'];
+include 'fungsi.php';
+if(isset($_POST['submit'])){
+  $nama = $_POST['nama'];
+  $tanggal = $_POST['tanggal'];
+  $jenis = $_POST['jenis'];
+  $fasilitas = $_POST['fasilitas'];
+  $deskripsi = $_POST['deskripsi'];
+  $masukan = $_POST['masukan'];
+  $foto = $_POST['foto'];
 
-    $sql = "insert into `laporan` (nama, tanggal,jenis, fasilitas, deskripsi, masukan, foto) values('$nama','$tanggal', '$jenis', '$fasilitas', '$deskripsi', '$masukan', '$foto')";
+  $sql1 = "INSERT INTO `laporan` (nama, tanggal, jenis, fasilitas, deskripsi, masukan, foto) VALUES ('$nama', '$tanggal', '$jenis', '$fasilitas', '$deskripsi', '$masukan', '$foto')";
+  $sql2 = "INSERT INTO `admin_laporan` (nama, tanggal, jenis, fasilitas, deskripsi, masukan, foto) VALUES ('$nama', '$tanggal', '$jenis', '$fasilitas', '$deskripsi', '$masukan', '$foto')";
 
-    $result=mysqli_query($koneksi, $sql);
+  $result1 = mysqli_query($koneksi, $sql1);
+  $result2 = mysqli_query($koneksi, $sql2);
 
-    if($result){
-      header('location: laporan-user.php');
-    } else {
-      die(mysqli_error($koneksi));
-    }
+  if($result1 && $result2){
+    header('location: laporan-user.php');
+  } else {
+    die(mysqli_error($koneksi));
   }
-
-
+}
 ?>
+
 
 
 <!DOCTYPE html>
@@ -45,6 +46,7 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="assets/css/style3.css">
 </head>
 <body>
 
@@ -127,10 +129,10 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                  <label for="foto" class="col-sm-2 col-form-label fw-bold">Foto</label>
-                  <div class="col-sm-10">
-                    <input class="form-control" type="file" id="foto" multiple name="foto">
-                  </div>
+                <label for="foto" class="col-sm-2 col-form-label fw-bold">Foto</label>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="file" id="foto" multiple name="foto" accept=".jpg, .jpeg, .png, .gif">
+                    </div>
                 </div>
                 <div class="row mb-3">
                   <label for="button" class="col-sm-2 col-form-label"></label>
