@@ -108,7 +108,8 @@ if(isset($_POST['aksi'])) {
         <td>'.$fasilitas.'</td>
         <td>'.$deskripsi.'</td>
         <td>'.$masukan.'</td>
-        <td><img src="'.$foto.'" alt="" width="50" height="50"></td>
+        <td><img src="images/' . $foto . '" width="100" alt="foto"></td>
+        
         
 
         <td class="text-center">Verified</td>

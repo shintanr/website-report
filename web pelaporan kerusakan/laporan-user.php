@@ -1,6 +1,7 @@
 <?php
 include 'fungsi.php';
 
+
 ?>
 
 
@@ -81,7 +82,7 @@ include 'fungsi.php';
     </tr>
         </thead>
         <tbody>
-
+        
         <?php
         $sql = "SELECT * FROM `laporan`";
         $result = mysqli_query($koneksi, $sql);
@@ -94,7 +95,7 @@ include 'fungsi.php';
                 $deskripsi = $row['deskripsi'];
                 $masukan = $row['masukan'];
                 $foto = $row['foto'];
-
+                
                 echo '
                 <tr>
                     <td>' . $tanggal . '</td>
@@ -102,7 +103,7 @@ include 'fungsi.php';
                     <td>' . $fasilitas . '</td>
                     <td>' . $deskripsi . '</td>
                     <td>' . $masukan . '</td>
-                    <td><img src="'.$foto.'" alt="" width="50" height="50"></td>
+                    <td><img src="images/' . $foto . '" width="100" alt="foto"></td>
                     <td>Terkirim</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

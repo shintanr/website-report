@@ -1,5 +1,6 @@
 <?php
 include 'fungsi.php';
+
 if(isset($_POST['submit'])){
   $nama = $_POST['nama'];
   $tanggal = $_POST['tanggal'];
@@ -7,11 +8,51 @@ if(isset($_POST['submit'])){
   $fasilitas = $_POST['fasilitas'];
   $deskripsi = $_POST['deskripsi'];
   $masukan = $_POST['masukan'];
-  $foto = $_POST['foto'];
 
-  $sql1 = "INSERT INTO `laporan` (nama, tanggal, jenis, fasilitas, deskripsi, masukan, foto) VALUES ('$nama', '$tanggal', '$jenis', '$fasilitas', '$deskripsi', '$masukan', '$foto')";
-  $sql2 = "INSERT INTO `admin_laporan` (nama, tanggal, jenis, fasilitas, deskripsi, masukan, foto) VALUES ('$nama', '$tanggal', '$jenis', '$fasilitas', '$deskripsi', '$masukan', '$foto')";
 
+  if($_FILES['foto']['error'] === 4) {
+    echo 
+    "<script> alert('Harap pilih foto terlebih dahulu');</script>";
+    return false;
+  } 
+    $foto = $_FILES["foto"]["name"];
+	$tmp_name = $_FILES["foto"]["tmp_name"];
+	$ukuran = $_FILES["foto"]["size"];
+	$tipe = $_FILES["foto"]["type"];
+	$error = $_FILES["foto"]["error"];
+
+    if($ukuran > 5000000){
+        echo "<script>alert('Ukuran terlalu besar');</script>";
+        return false;
+    }
+
+
+    $tipeFotoAman = ['jpg', 'jpeg', 'png', 'gif'];
+	$ekstensiFoto = explode('.', $foto);
+	$ekstensiFoto = strtolower(end($ekstensiFoto));
+
+
+    if(!in_array($ekstensiFoto, $tipeFotoAman)) {
+        echo "<script>alert('yang anda pilih bukan foto');</script>";
+        return false;
+    }
+
+    // untuk membbuat file baru'
+    $ekstensiFoto = explode('.', $_FILES['foto']['name']);
+	$ekstensiFoto = strtolower(end($ekstensiFoto));
+	$nama_file_baru = uniqid() . '.' . $ekstensiFoto;
+	$foto = $nama_file_baru;
+
+    move_uploaded_file($tmp_name, 'images/' . $foto);
+
+
+
+
+
+$sql1 = "INSERT INTO `laporan` (nama, tanggal, jenis, fasilitas, deskripsi, masukan, foto) VALUES ('$nama', '$tanggal', '$jenis', '$fasilitas', '$deskripsi', '$masukan', '$foto')";
+$sql2 = "INSERT INTO `admin_laporan` (nama, tanggal, jenis, fasilitas, deskripsi, masukan, foto) VALUES ('$nama', '$tanggal', '$jenis', '$fasilitas', '$deskripsi', '$masukan', '$foto')";
+
+  
   $result1 = mysqli_query($koneksi, $sql1);
   $result2 = mysqli_query($koneksi, $sql2);
 
@@ -21,6 +62,7 @@ if(isset($_POST['submit'])){
     die(mysqli_error($koneksi));
   }
 }
+
 ?>
 
 
@@ -83,7 +125,7 @@ if(isset($_POST['submit'])){
     </div>
     <div class="row justify-content-center my-3">
             <div class="col-md-9">
-              <form method="post">
+              <form method="post" enctype="multipart/form-data">
                 <div class="row mb-3">
                   <label for="nama" class="col-sm-2 col-form-label fw-bold">Nama Palapor</label>
                   <div class="col-sm-10">
@@ -131,7 +173,7 @@ if(isset($_POST['submit'])){
                 <div class="row mb-3">
                 <label for="foto" class="col-sm-2 col-form-label fw-bold">Foto</label>
                     <div class="col-sm-10">
-                        <input class="form-control" type="file" id="foto" multiple name="foto" accept=".jpg, .jpeg, .png, .gif">
+                        <input class="form-control" type="file" id="foto" multiple name="foto" accept=".jpg, .jpeg, .png">
                     </div>
                 </div>
                 <div class="row mb-3">
